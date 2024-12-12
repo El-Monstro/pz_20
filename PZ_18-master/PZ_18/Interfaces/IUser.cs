@@ -1,8 +1,6 @@
-﻿namespace PZ_18.Models.Interfaces
+﻿namespace PZ_18.Interfaces
 {
-    /// <summary>
-    /// Интерфейс пользователя.
-    /// </summary>
+
     public interface IUser
     {
         int UserID { get; }
@@ -12,9 +10,7 @@
         string Password { get; set; }
         int TypeID { get; set; }
 
-        /// <summary>
-        /// Смена пароля.
-        /// </summary>
+
         void ChangePassword(string newHashedPassword);
     }
 }

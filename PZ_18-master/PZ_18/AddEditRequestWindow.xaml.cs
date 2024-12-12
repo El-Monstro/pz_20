@@ -4,9 +4,7 @@ using PZ_18.Models;
 
 namespace PZ_18.Views
 {
-    /// <summary>
-    /// Окно для добавления или редактирования заявки.
-    /// </summary>
+
     public partial class AddEditRequestWindow : Window
     {
         public AddEditRequestWindow(Request request = null)

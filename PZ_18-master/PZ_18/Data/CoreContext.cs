@@ -22,12 +22,11 @@ namespace PZ_18.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Строка подключения к локальному экземпляру SQL Server.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-Q11QP9V\\SQLEXPRESS;Database=ServiceCenterDB;Trusted_Connection=True;TrustServerCertificate=True;");
 
-				// Строка подключения к локальному экземпляру SQL Server, через колледж
-				//optionsBuilder.UseSqlServer("Server=192.168.147.54;Database=ServiceCenterDB1;User Id=is;Password=1;TrustServerCertificate=True;");
-			}
-		}
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Demos2;Trusted_Connection=True;TrustServerCertificate=True;");
+
+                //optionsBuilder.UseSqlServer("Server=192.168.147.54;Database=Demos2;User Id=is;Password=1;TrustServerCertificate=True;");
+            }
+        }
     }
 }

@@ -5,9 +5,6 @@ using Newtonsoft.Json;
 
 namespace PZ_18.Models
 {
-    /// <summary>
-    /// Комментарий к заявке.
-    /// </summary>
     public class Comment : INotifyPropertyChanged
     {
         private int _commentID;

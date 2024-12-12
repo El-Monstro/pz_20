@@ -7,10 +7,6 @@ using System.Windows.Input;
 
 namespace PZ_18.ViewModels
 {
-	/// <summary>
-	/// Главная ViewModel приложения.
-	/// Отвечает за загрузку списков пользователей и заявок, а также поиск заявок.
-	/// </summary>
 	public class MainViewModel
 	{
 		public ObservableCollection<User> Users { get; set; }
@@ -22,7 +18,6 @@ namespace PZ_18.ViewModels
 
 		public MainViewModel()
 		{
-			// Загрузка данных из контекста (пользователи и заявки).
 			using (var context = new CoreContext())
 			{
 				Users = new ObservableCollection<User>(context.Users.Include(u => u.UserType).ToList());
@@ -34,9 +29,6 @@ namespace PZ_18.ViewModels
 			SearchRequestsCommand = new RelayCommand(SearchRequests);
 		}
 
-		/// <summary>
-		/// Логика поиска заявок по ФИО клиента.
-		/// </summary>
 		public void SearchRequests(object parameter)
 		{
 			using (var context = new CoreContext())

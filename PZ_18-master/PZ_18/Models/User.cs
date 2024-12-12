@@ -1,15 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using PZ_18.Models.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
+using PZ_18.Interfaces;
 
 namespace PZ_18.Models
 {
-    /// <summary>
-    /// Пользователь системы.
-    /// </summary>
+
     public class User : INotifyPropertyChanged, IUser
     {
         private int _userId;
