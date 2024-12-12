@@ -1,0 +1,133 @@
+CREATE DATABASE ServiceCenterDB;
+
+-- Использование базы данных
+USE ServiceCenterDB;
+
+-- Таблица типов пользователей
+CREATE TABLE UserTypes (
+    typeID INT PRIMARY KEY IDENTITY(1,1),
+    typeName VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Вставка типов пользователей
+INSERT INTO UserTypes (typeName)
+VALUES 
+    ('Менеджер'),
+    ('Мастер'),
+    ('Оператор'),
+    ('Заказчик');
+
+-- Таблица пользователей
+CREATE TABLE Users (
+    userID INT PRIMARY KEY IDENTITY(1,1),
+    fio VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    login VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Рекомендуется хранить хешированные пароли
+    typeID INT NOT NULL,
+    CONSTRAINT FK_UserType FOREIGN KEY (typeID) REFERENCES UserTypes(typeID)
+);
+
+-- Таблица типов домашней техники
+CREATE TABLE HomeTechTypes (
+    techTypeID INT PRIMARY KEY IDENTITY(1,1),
+    techTypeName VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Вставка типов домашней техники
+INSERT INTO HomeTechTypes (techTypeName)
+VALUES 
+    ('Фен'),
+    ('Тостер'),
+    ('Холодильник'),
+    ('Стиральная машина'),
+    ('Мультиварка');
+
+-- Таблица запросов на ремонт
+CREATE TABLE Requests (
+    requestID INT PRIMARY KEY IDENTITY(1,1),
+    startDate DATE NOT NULL,
+    techTypeID INT NOT NULL,
+    homeTechModel VARCHAR(255) NOT NULL,
+    problemDescription TEXT NOT NULL,
+    requestStatus VARCHAR(50) NOT NULL,
+    completionDate DATE,
+    masterID INT,
+    clientID INT,
+    CONSTRAINT FK_RequestTechType FOREIGN KEY (techTypeID) REFERENCES HomeTechTypes(techTypeID),
+    CONSTRAINT FK_RequestMaster FOREIGN KEY (masterID) REFERENCES Users(userID),
+    CONSTRAINT FK_RequestClient FOREIGN KEY (clientID) REFERENCES Users(userID)
+);
+
+-- Таблица запчастей для ремонта
+CREATE TABLE RepairParts (
+    partID INT PRIMARY KEY IDENTITY(1,1),
+    requestID INT NOT NULL,
+    partName VARCHAR(255) NOT NULL,
+    quantity INT DEFAULT 1,
+    CONSTRAINT FK_RepairPartsRequest FOREIGN KEY (requestID) REFERENCES Requests(requestID)
+);
+
+-- Таблица комментариев
+CREATE TABLE Comments (
+    commentID INT PRIMARY KEY IDENTITY(1,1),
+    message TEXT NOT NULL,
+    masterID INT,
+    requestID INT,
+    CONSTRAINT FK_CommentMaster FOREIGN KEY (masterID) REFERENCES Users(userID),
+    CONSTRAINT FK_CommentRequest FOREIGN KEY (requestID) REFERENCES Requests(requestID)
+);
+
+-- Вставка пользователей
+INSERT INTO Users (fio, phone, login, password, typeID)
+VALUES 
+    ('Трубин Никита Юрьевич', '89210563128', 'kasoo', 'root', 1),
+    ('Мурашов Андрей Юрьевич', '89535078985', 'murashov123', 'qwerty', 2),
+    ('Степанов Андрей Викторович', '89210673849', 'test1', 'test1', 2),
+    ('Перина Анастасия Денисовна', '89990563748', 'perinaAD', '250519', 3),
+    ('Мажитова Ксения Сергеевна', '89994563847', 'krutiha1234567', '1234567890', 3),
+    ('Семенова Ясмина Марковна', '89994563847', 'login1', 'pass1', 2),
+    ('Баранова Эмилия Марковна', '89994563841', 'login2', 'pass2', 4),
+    ('Егорова Алиса Платоновна', '89994563842', 'login3', 'pass3', 4),
+    ('Титов Максим Иванович', '89994563843', 'login4', 'pass4', 4),
+    ('Иванов Марк Максимович', '89994563844', 'login5', 'pass5', 2);
+
+-- Вставка запросов на ремонт
+INSERT INTO Requests (startDate, techTypeID, homeTechModel, problemDescription, requestStatus, masterID, clientID)
+VALUES 
+    ('2023-06-06', 1, 'Ладомир ТА112 белый', 'Перестал работать', 'В процессе ремонта', 2, 7),
+    ('2023-05-05', 2, 'Redmond RT-437 черный', 'Перестал работать', 'В процессе ремонта', 3, 7),
+    ('2022-07-07', 3, 'Indesit DS 316 W белый', 'Не морозит одна из камер холодильника', 'Готова к выдаче', 2, 8),
+    ('2023-08-02', 4, 'DEXP WM-F610NTMA/WW белый', 'Перестали работать многие режимы стирки', 'Новая заявка', NULL, 8),
+    ('2023-08-02', 5, 'Redmond RMC-M95 черный', 'Перестала включаться', 'Новая заявка', NULL, 9),
+    ('2023-08-02', 1, 'Ладомир ТА113 чёрный', 'Перестал работать', 'Готова к выдаче', 2, 7),
+    ('2023-07-09', 3, 'Indesit DS 314 W серый', 'Гудит, но не замораживает', 'Готова к выдаче', 2, 8);
+
+-- Вставка запчастей
+INSERT INTO RepairParts (requestID, partName, quantity)
+VALUES 
+    (1, 'Мотор', 1),
+    (2, 'Термостат', 2),
+    (7, 'Компрессор', 1);
+
+-- Вставка комментариев
+INSERT INTO Comments (message, masterID, requestID)
+VALUES 
+    ('Интересная поломка', 2, 1),
+    ('Очень странно, будем разбираться!', 3, 2),
+    ('Скорее всего потребуется мотор обдува!', 2, 7),
+    ('Интересная проблема', 2, 1),
+    ('Очень странно, будем разбираться!', 3, 6);
+
+	ALTER TABLE [Requests]
+ADD [ClientFIO] NVARCHAR(255) NOT NULL DEFAULT(''),
+    [ClientPhone] NVARCHAR(15) NOT NULL DEFAULT('');
+	UPDATE [Requests]
+SET [ClientFIO] = N'Иванов Иван Иванович',
+    [ClientPhone] = N'+79991234567'
+WHERE [RequestID] = 1;
+
+UPDATE [Requests]
+SET [ClientFIO] = N'Петров Петр Петрович',
+    [ClientPhone] = N'+79991234568'
+WHERE [RequestID] = 2;
