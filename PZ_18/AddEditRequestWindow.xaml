@@ -23,15 +23,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ФИО клиента -->
         <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО клиента:" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRequest.ClientFIO, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Телефон клиента -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон клиента:" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentRequest.ClientPhone, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Выбор типа техники -->
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Тип техники:" VerticalAlignment="Center" Margin="0,5"/>
         <ComboBox Grid.Row="2" Grid.Column="1" 
                   ItemsSource="{Binding HomeTechTypes}" 
@@ -39,30 +36,24 @@
                   DisplayMemberPath="TechTypeName"
                   Margin="0,5"/>
 
-        <!-- Модель техники -->
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Модель техники:" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentRequest.HomeTechModel, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Проблема -->
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Описание проблемы:" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CurrentRequest.ProblemDescription, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Статус заявки -->
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Статус заявки:" VerticalAlignment="Center" Margin="0,5"/>
         <ComboBox Grid.Row="5" Grid.Column="1" 
                   ItemsSource="{Binding StatusOptions}" 
                   SelectedItem="{Binding CurrentRequest.RequestStatus, UpdateSourceTrigger=PropertyChanged}" 
                   Margin="0,5" />
 
-        <!-- Дата начала -->
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Дата начала:" VerticalAlignment="Center" Margin="0,5"/>
         <DatePicker Grid.Row="6" Grid.Column="1" SelectedDate="{Binding CurrentRequest.StartDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Дата завершения -->
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Дата завершения:" VerticalAlignment="Center" Margin="0,5"/>
         <DatePicker Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentRequest.CompletionDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
-        <!-- Кнопки -->
         <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
             <Button Content="Сохранить" Command="{Binding SaveCommand}" Margin="5" Width="100" Height="30"/>
             <Button Content="Отмена" Click="Cancel_Click" Margin="5" Width="100" Height="30"/>

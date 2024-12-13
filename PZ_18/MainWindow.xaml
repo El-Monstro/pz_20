@@ -10,7 +10,6 @@
     <Grid>
         <TabControl>
             <TabItem Header="Пользователи">
-                <!-- Отображаем пользователей в DataGrid -->
                 <DataGrid ItemsSource="{Binding Users}" AutoGenerateColumns="True"/>
             </TabItem>
             <TabItem Header="Заявки">
@@ -21,14 +20,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Панель поиска и добавления -->
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBox Width="200" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" ToolTip="Поиск по ФИО"/>
                         <Button Content="Найти" Margin="5,0,0,0" Command="{Binding SearchRequestsCommand}"/>
                         <Button Content="Добавить заявку" Margin="10,0,0,0" Click="AddRequest_Click"/>
                     </StackPanel>
 
-                    <!-- Таблица заявок -->
                     <DataGrid x:Name="RequestDataGrid" Grid.Row="1" ItemsSource="{Binding Requests}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding RequestID}"/>
@@ -43,10 +40,8 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <!-- Кнопки действий над выбранной заявкой -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2">
                         <Button Content="Редактировать выбранную заявку" Margin="0,0,5,0" Click="EditRequest_Click"/>
-                        <!-- Кнопка удаления (дополнительно) -->
                         <Button Content="Удалить заявку" Click="DeleteRequest_Click"/>
                     </StackPanel>
                 </Grid>

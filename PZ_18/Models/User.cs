@@ -7,9 +7,6 @@ using Newtonsoft.Json;
 
 namespace PZ_18.Models
 {
-    /// <summary>
-    /// Пользователь системы.
-    /// </summary>
     public class User : INotifyPropertyChanged, IUser
     {
         private int _userId;

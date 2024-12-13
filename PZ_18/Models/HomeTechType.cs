@@ -4,9 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace PZ_18.Models
 {
-    /// <summary>
-    /// Тип домашней техники.
-    /// </summary>
     public class HomeTechType : INotifyPropertyChanged
     {
         private int _techTypeID;

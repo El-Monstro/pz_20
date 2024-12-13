@@ -3,10 +3,7 @@ using PZ_18.Models;
 
 namespace PZ_18.Data
 {
-    /// <summary>
-    /// EF Core контекст базы данных.
-    /// Настройка подключения к БД через UseSqlServer.
-    /// </summary>
+
     public class CoreContext : DbContext
     {
         public DbSet<User> Users { get; set; }

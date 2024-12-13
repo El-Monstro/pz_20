@@ -8,9 +8,6 @@ using PZ_18.Models.Interfaces;
 
 namespace PZ_18.Models
 {
-	/// <summary>
-	/// Заявка на ремонт.
-	/// </summary>
 	public class Request : INotifyPropertyChanged, IRequest
 	{
 		private int _requestId;
@@ -50,7 +47,6 @@ namespace PZ_18.Models
 		[JsonIgnore]
 		public virtual HomeTechType HomeTechType { get; private set; }
 
-		// Вычисляемое свойство для имени типа техники
 		public string TechTypeName => HomeTechType?.TechTypeName ?? "Не указан";
 
 		[Required]

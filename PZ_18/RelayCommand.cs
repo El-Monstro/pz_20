@@ -3,9 +3,6 @@ using System.Windows.Input;
 
 namespace PZ_18.ViewModels
 {
-    /// <summary>
-    /// Простая реализация ICommand для привязки действий из ViewModel к кнопкам во View.
-    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;

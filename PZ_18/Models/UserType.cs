@@ -4,9 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace PZ_18.Models
 {
-    /// <summary>
-    /// Тип пользователя (роль).
-    /// </summary>
     public class UserType : INotifyPropertyChanged
     {
         private int _typeId;

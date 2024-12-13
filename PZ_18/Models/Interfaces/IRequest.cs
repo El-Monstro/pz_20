@@ -17,9 +17,7 @@ namespace PZ_18.Models.Interfaces
         int? MasterID { get; set; }
         int? ClientID { get; set; }
 
-        /// <summary>
-        /// Обновляет статус заявки. Если статус "Готова к выдаче", устанавливается CompletionDate.
-        /// </summary>
+
         void UpdateStatus(string newStatus);
     }
 }
