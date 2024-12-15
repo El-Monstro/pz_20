@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
-using PZ_18.Models.Interfaces;
+using PZ_18.Interfaces;
 
 namespace PZ_18.Models
 {
-	public class Request : INotifyPropertyChanged, IRequest
+    public class Request : INotifyPropertyChanged, IRequest
 	{
 		private int _requestId;
 		private DateTime _startDate;

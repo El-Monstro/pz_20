@@ -55,7 +55,6 @@ namespace PZ_18.ViewModels
 
         public event Action RequestSaved;
 
-        /// <param name="request">Заявка, которую редактируем или добавляем.</param>
         public AddEditRequestViewModel(Request request = null)
         {
             using (var context = new CoreContext())

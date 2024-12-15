@@ -1,4 +1,4 @@
-﻿namespace PZ_18.Models.Interfaces
+﻿namespace PZ_18.Interfaces
 {
     public interface IUser
     {
